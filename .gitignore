@@ -8,3 +8,7 @@
 .metadata
 
 
+#ignore Collection_Framework
+#Ignore Only bin-folder which only taken more space: compiled version, rest .setting, .project, .classpath -> no need to ignore
+
+/Collection_Framework/bin

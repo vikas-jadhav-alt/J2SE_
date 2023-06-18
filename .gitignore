@@ -7,6 +7,7 @@
 # What Should Be Ignored
 ###########################
 # 	- Ignore Only bin-folder which only taken more space: compiled version, rest .setting, .project, .classpath -> no need to ignore
+#	- Refer: https://www.w3schools.com/git/git_ignore.asp?remote=github
 
 
 
@@ -15,10 +16,7 @@
 .metadata
 
 
-#ignore Collection_Framework - bin
-#/Collection_Framework/bin
-/Misc_Core_Java_Test_Practice/bin
-
-# **/bin
+#ignore bin folder found anywhere
+**/bin/
  
 

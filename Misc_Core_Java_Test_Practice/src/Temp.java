@@ -30,6 +30,7 @@ class Arithmetic {
 		 */
 		// CTE:The type Arithmetic does not define calc(long) that is applicable here
 //		Calc add = Arithmetic::calc;
+//		------
 
 		/** ---------------------------------------------------------- */
 		Calc add = Arithmetic::calcLong;

@@ -4,11 +4,21 @@
 #  / is used to ignore pathnames relative to the .gitignore file
 #  # is used to add comments to a .gitignore file
 
+# What Should Be Ignored
+###########################
+# 	- Ignore Only bin-folder which only taken more space: compiled version, rest .setting, .project, .classpath -> no need to ignore
+
+
+
+
 #ignore STS Workspace MetaData
 .metadata
 
 
-#ignore Collection_Framework
-#Ignore Only bin-folder which only taken more space: compiled version, rest .setting, .project, .classpath -> no need to ignore
+#ignore Collection_Framework - bin
+#/Collection_Framework/bin
+/Misc_Core_Java_Test_Practice/bin
 
-/Collection_Framework/bin
+# **/bin
+ 
+

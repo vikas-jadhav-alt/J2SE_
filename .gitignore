@@ -12,7 +12,7 @@
 
 
 
-#ignore STS Workspace MetaData
+#ignore STS Workspace MetaData: very large file: must ignore
 .metadata
 
 

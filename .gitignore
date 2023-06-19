@@ -14,9 +14,12 @@
 
 #ignore STS Workspace MetaData: very large file: must ignore
 .metadata
+.classpath
+.project
 
 
 #ignore bin folder found anywhere
 **/bin/
+
  
 

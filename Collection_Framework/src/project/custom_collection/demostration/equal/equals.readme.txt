@@ -1,0 +1,35 @@
+
+
+PATTERN MATCHING
+=================
+		//Before Java 14
+		if (obj instanceof Student) {
+			Student o = (Student) obj;
+			return (this.rollNo == o.rollNo);
+		}
+		
+		//Java 14: Pattern Matching Of instanceof operator
+		if (obj instanceof Student o) {
+			return (this.rollNo == o.rollNo);
+		}
+		//Compiler automatically add line: Student o = (Student) obj;
+
+		
+		
+		
+EQUALS METHOD of STRING CLASS
+==============================		
+		public boolean equals(Object anObject) {
+				//First comparing if two references pointing to same object: as in case of String,  string pooling is possible,
+				//if “String Pooling” gets satisfied then there is no need to check for the state as definitely two references will be pointing to same object.
+
+						if (this == anObject) {
+							return true;
+						}
+				
+				// if String Pooling fails then comparing by the state of the object.
+	
+						return (anObject instanceof String aString) && (!COMPACT_STRINGS || this.coder == aString.coder)
+								&& StringLatin1.equals(value, aString.value);
+		} }
+		

@@ -16,6 +16,7 @@
 .metadata
 .classpath
 .project
+.settings
 
 
 #ignore bin folder found anywhere

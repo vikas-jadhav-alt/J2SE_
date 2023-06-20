@@ -2,6 +2,7 @@ package project.custom_collection;
 
 import java.util.Arrays;
 
+//Clone of ArrayList and Vector
 class VikasCollection {
 
 	private Object[] list;

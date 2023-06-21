@@ -2,6 +2,32 @@ package project.custom_collection;
 
 import java.util.Arrays;
 
+/*Tips:*/
+/**To Shift To Left: Start from left end point: (Remove Operation)
+ * To Shift To Right: Start from right end point: (Insert Operation)
+ * 
+ */
+
+/* 9 Operation of Collection*/
+/**
+ * 1. Add		- Append at end	=> add(x)::void
+ * 				- grow()::void
+ * 2. Insert	- in b/w		=> add(x,y)::void
+ * 3. count		- size of list	=> size()::int, capacity()::int
+ * 4. print		- toString()::String   
+ * 5. search	- contains(Object)::boolean
+ * 				- indexOf(Object)::int
+ * 				- lastIndexOf(Object)::int
+ * 6. retrieve	- get(int)::Object
+ * 				- checkIndex(int)::void
+ * 7. remove	- remove(int)::Object
+ * 				- remove(Object)::boolean
+ * 8. Replace	- set(int,Object)::Object
+ * 
+ * Other Method:
+ * 1. equals()
+ */
+
 import project.custom_collection.demostration.equal.Student;
 
 //Clone of ArrayList and Vector
@@ -174,7 +200,7 @@ class VikasCollection {
 
 	private void checkIndex(int index) {
 
-		if (index < 0 || index > size())
+		if (index < 0 || index > count)
 			throw new IndexOutOfBoundsException(index + " must be in range: [0," + size() + "]");
 
 	}
@@ -194,7 +220,7 @@ class VikasCollection {
 		Object ret = list[index];
 
 		// remove and shift by left
-		for (int i = index; i < count - 1; index++) {
+		for (int i = index; i < count - 1; i++) {
 			list[i] = list[i + 1];
 		}
 
@@ -206,8 +232,47 @@ class VikasCollection {
 	}
 
 	// Remove By Object : Object
+	public boolean remove(Object obj) {
+
+		int index = indexOf(obj);
+		if (index == -1)
+			return false;
+		remove(index);
+		return true;
+	}
+
 	// Insert : insert
+	public void add(int index, Object obj) {
+		checkIndex(index);
+
+		if (size() == capacity())
+			grow();
+
+		// Shifting to Right
+		for (int i = count - 1; i >= index; i--) {
+			list[i + 1] = list[i]; // Here we are assigning reference variable, not actual values as Array always
+									// store Reference Values;s
+		}
+
+		list[index] = obj;
+		count++;
+
+	}
+
 	// Replace : set
+	public Object set(int index, Object input) {
+		checkIndex(index);
+
+		Object obj = list[index];
+
+		list[index] = input;
+
+		return obj;
+
+	}
+
+	// Sorting Operation: There are many algorithm available to sort: we can
+	// implement them as we have implemented all above operations
 
 	// General Method Displaying Retrieving and then updating
 
@@ -218,8 +283,8 @@ class VikasCollection {
 			col.add("Mohan");
 			col.add(Integer.valueOf(67));
 			col.add("a"); // String class object added
-			col.add('a'); // character added: internal converted to Wrapper Class: Character
 			col.add('b');
+			col.add('a'); // character added: internal converted to Wrapper Class: Character
 			col.add(true);
 			col.add(67);
 			col.add(34.6);
@@ -230,8 +295,7 @@ class VikasCollection {
 			col.add(18);
 
 			System.out.println(col); // internally calling: toString() method
-			System.out.println("Size: " + col.size());
-			System.out.println("Capacity: " + col.capacity());
+			System.out.println("Size: " + col.size() + ", Capacity: " + col.capacity());
 
 			// Search and Index of
 			System.out.println(col.contains("a"));
@@ -251,13 +315,25 @@ class VikasCollection {
 
 			System.out.println("Removing========");
 
-			System.out.println(col); // internally calling: toString() method
-			System.out.println("Size: " + col.size());
-			System.out.println("Capacity: " + col.capacity());
+			System.out.println(col);
+			System.out.println("Size: " + col.size() + ", Capacity: " + col.capacity());
 
-			System.out.println("Removing Student(13) " + col.remove(13));
-			System.out.println("Size: " + col.size());
-			System.out.println("Capacity: " + col.capacity());
+			System.out.println("Index:11 : " + col.get(11));
+			System.out.println("Removing Index:11 =>  " + col.remove(11));
+			System.out.println(col);
+			System.out.println("Size: " + col.size() + ", Capacity: " + col.capacity());
+
+			System.out.println("Removing 34.6 =>  " + col.remove(34.6));
+			System.out.println(col);
+			System.out.println("Size: " + col.size() + ", Capacity: " + col.capacity());
+
+			col.add(9, "John");
+			System.out.println(col);
+			System.out.println("Size: " + col.size() + ", Capacity: " + col.capacity());
+
+			System.out.println("Insert (6, 90.7) ==> " + col.set(6, 90.7));
+			System.out.println(col);
+			System.out.println("Size: " + col.size() + ", Capacity: " + col.capacity());
 
 		}
 	}

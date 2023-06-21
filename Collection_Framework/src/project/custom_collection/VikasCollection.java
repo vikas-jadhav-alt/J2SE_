@@ -2,6 +2,8 @@ package project.custom_collection;
 
 import java.util.Arrays;
 
+import project.custom_collection.demostration.equal.Student;
+
 //Clone of ArrayList and Vector
 class VikasCollection {
 
@@ -118,22 +120,145 @@ class VikasCollection {
 
 	}
 
+	// Search Operation: contains: boolean
+	// Searching Algorithms: linear, binary, etc.
+	public boolean contains(Object obj) {
+		return indexOf(obj) >= 0;
+	}
+
+	// First Index of: indexOf: int
+	public int indexOf(Object obj) {
+
+		// obj can be null, and also to avoid RTE: Null Pointer Exception
+		if (obj == null) {
+			for (int i = 0; i <= count; i++) {
+				if (list[i] == null) { // instead of if(list[i] == obj) for Time Performace
+					return i;
+				}
+			}
+		} else {
+			for (int i = 0; i <= count; i++) {
+				if (obj.equals(list[i])) { // Note: Pattern of Writing Code: here we are calling "equals" method of
+											// "obj" not of "list[i]"
+					return i;
+				}
+			}
+
+		}
+
+		return -1; // return -1 if not found
+	}
+
+	// Last Index of Operation: contains: int
+	public int lastIndexOf(Object obj) {
+
+		// obj can be null, and also to avoid RTE: Null Pointer Exception
+		if (obj == null) {
+			for (int i = count; i >= 0; i--) {
+				if (list[i] == null) { // instead of if(list[i] == obj) for Time Performace: CPU Cycles
+					return i;
+				}
+			}
+		} else {
+			for (int i = count; i >= 0; i--) {
+				if (obj.equals(list[i])) { // Note: Pattern of Writing Code: here we are calling "equals" method of
+											// "obj" not of "list[i]"
+					return i;
+				}
+			}
+
+		}
+
+		return -1;
+	}
+
+	private void checkIndex(int index) {
+
+		if (index < 0 || index > size())
+			throw new IndexOutOfBoundsException(index + " must be in range: [0," + size() + "]");
+
+	}
+
+	// Retrieve Operation: get: object
+	public Object get(int index) {
+		// First Check Index
+		checkIndex(index);
+
+		return list[index];
+	}
+
+	// Remove By Index : Object
+	public Object remove(int index) {
+		checkIndex(index);
+
+		Object ret = list[index];
+
+		// remove and shift by left
+		for (int i = index; i < count - 1; index++) {
+			list[i] = list[i + 1];
+		}
+
+		list[count - 1] = null;
+
+		count--; // decrease size
+
+		return ret;
+	}
+
+	// Remove By Object : Object
+	// Insert : insert
+	// Replace : set
+
+	// General Method Displaying Retrieving and then updating
+
 	class Main {
 		public static void main(String[] args) {
-			VikasCollection list = new VikasCollection(2);
+			VikasCollection col = new VikasCollection(2);
 
-			list.add("Mohan");
-			list.add(Integer.valueOf(67));
-			list.add(Integer.valueOf(69));
-			list.add(Integer.valueOf(34));
-			list.add(Integer.valueOf(6787));
-			list.add(Integer.valueOf(674));
-			list.add(Integer.valueOf(6740));
-			list.add(Integer.valueOf(600));
-			list.add(Integer.valueOf(700));
+			col.add("Mohan");
+			col.add(Integer.valueOf(67));
+			col.add("a"); // String class object added
+			col.add('a'); // character added: internal converted to Wrapper Class: Character
+			col.add('b');
+			col.add(true);
+			col.add(67);
+			col.add(34.6);
+			col.add(new Student(11, "Elevan"));
+			col.add(new Student(12, "Twelve"));
+			col.add(new Student(11, "Elevan"));
+			col.add(new Student(13, "Thirteen"));
+			col.add(18);
 
-			System.out.println(list);
+			System.out.println(col); // internally calling: toString() method
+			System.out.println("Size: " + col.size());
+			System.out.println("Capacity: " + col.capacity());
+
+			// Search and Index of
+			System.out.println(col.contains("a"));
+			System.out.println(col.indexOf("a"));
+			System.out.println(col.indexOf('a'));
+
+			System.out.println("\"b\" present: " + col.contains("b"));
+			System.out.println(col.indexOf("b"));
+			System.out.println(col.lastIndexOf("b"));
+			System.out.println("'b' present: " + col.contains('b'));
+
+			System.out.println(col.indexOf(new Student(11, "Elevan")));
+			System.out.println(col.lastIndexOf(new Student(11, "Elevan")));
+
+			System.out.println(col.get(4));
+//			System.out.println(col.get(16)); //IndexOutOfBoundException
+
+			System.out.println("Removing========");
+
+			System.out.println(col); // internally calling: toString() method
+			System.out.println("Size: " + col.size());
+			System.out.println("Capacity: " + col.capacity());
+
+			System.out.println("Removing Student(13) " + col.remove(13));
+			System.out.println("Size: " + col.size());
+			System.out.println("Capacity: " + col.capacity());
+
 		}
 	}
 }
-

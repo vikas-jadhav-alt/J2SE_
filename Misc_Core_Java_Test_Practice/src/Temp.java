@@ -1,53 +1,21 @@
+class static_out {
+	static int x;
+	static int y;
 
-interface Calc {
-
-	void m(long a);
-
-}
-
-interface CalcString {
-
-	long m(long a);
-
-}
-
-class Arithmetic {
-
-	private static int calc(int a) {
-		return a + 2;
-	}
-
-	private static int calcLong(long a) {
-		return (int) a + 2;
-	}
-
-	public static void main(String[] args) {
-		System.out.println("running...");
-
-		/**
-		 * While Declaring The Method Reference also: there must be exact match of
-		 * Arguments
-		 */
-		// CTE:The type Arithmetic does not define calc(long) that is applicable here
-//		Calc add = Arithmetic::calc;
-//		------
-
-		/** ---------------------------------------------------------- */
-		Calc add = Arithmetic::calcLong;
-
-		// CTE: The method println(boolean) in the type PrintStream is not applicable
-		// for the arguments (void)
-//		System.out.println(add.m((int) 2));
-
-		/** ---------------------------------------------------------- */
-
-		CalcString sub = Arithmetic::calcLong;
-
-		System.out.println(sub.m((int) 2));// 4
-
+	void add(int a, int b) {
+		x = a + b; // 5 //7
+		y = x + b; // 8 //9
 	}
 }
 
-//OUTPUT:
-//running...
-//4
+class static_use {
+	public static void main(String args[])
+        {
+            static_out obj1 = new static_out();
+            static_out obj2 = new static_out();   
+            int a = 2;
+            obj1.add(a, a + 1);  //2,3
+            obj2.add(5, a); //5,2
+            System.out.println(obj1.x + ""+"" + obj2.y);     
+        }
+}

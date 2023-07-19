@@ -1,3 +1,4 @@
+package testing;
 class static_out {
 	static int x;
 	static int y;

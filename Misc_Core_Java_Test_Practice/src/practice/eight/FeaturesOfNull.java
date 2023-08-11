@@ -60,6 +60,11 @@ public class FeaturesOfNull {
 //		System.out.println(null.toUpperCase()); // CTE: Cannot invoke toUpperCase() on the primitive type null
 //		System.out.println((String)null.subString()); // CTE: Cannot invoke subString() on the primitive type null
 
+		// NOTE: Difference Between: (String)null and ((String))null) -> Depends Upon
+		// Associativity, which one evaluates first
+//		System.out.println((String)null.equals(null)); //CTE: Cannot invoke equals(null) on the primitive type null
+		System.out.println(((String) null).equals(null)); // RTE: java.lang.NullPointerException:
+
 		// Point 5;
 		/** Use of == operator */
 		System.out.println("use of == operator");

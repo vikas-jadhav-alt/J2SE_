@@ -1,5 +1,7 @@
 package practice.eight;
 
+
+
 import java.util.function.BiFunction;
 
 public class MethodReferencesExamples {
